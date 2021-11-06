@@ -4,7 +4,7 @@ const app = express();
 const Record = require('./connect1');
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
-const port = Process.env.PORT || 5000 ;
+const port = process.env.PORT || 3000 ;
 
 const superheroApi = '4089438887820246';
 
