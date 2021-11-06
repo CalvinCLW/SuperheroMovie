@@ -77,7 +77,7 @@
                     <h4>Superhero Name:</h4>
                     <select name="superheroName">
                         <%moviesList.forEach(movie => {%>
-                            <option value="<%= movie.superhero %>"><%= movie.superhero %></option>
+                            <option value="<%= movie._id %>"><%= movie.superhero %></option>
                         <%})%>
                     </select>
                     <br>
