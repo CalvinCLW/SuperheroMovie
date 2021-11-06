@@ -78,7 +78,7 @@ app.get('/editMovie', (req, res) =>{
     const superhero = req.query.superheroName;
     const rating = req.query.rating;
 
-    Record.updateOne({superhero: `${superhero}`}, {movieRating: `${rating}`}, function(err, res){
+    Record.updateOne({_id: `${superhero}`}, {movieRating: `${rating}`}, function(err, res){
         
         if (err) return handleError(err);
         console.log("Success");
