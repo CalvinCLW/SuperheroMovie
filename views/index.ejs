@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superhero & Movie </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+
+        body{
+            background-color: black;
+            color: white;
+        }
+
+        .editMovieForm, .addMovieForm {
+            width: 700px;
+        }
+
+        input, select, option {
+            width: 250px;
+            border: 1px solid black;
+            color: white;
+            background: rgba(0,0,0,0);
+            border: 2px solid white;
+
+        }
+
+        option {
+            background-color: black;
+            border: 2px solid white;
+        }
+
+        .submitBtn {
+            width: 150px;
+            height: 30px;
+            border-radius: 15px;
+            color: white;
+            background: rgba(0,0,0,0);
+            border: 2px solid white;
+        }
+
+        .submitBtn:hover {
+            transition: .5s;
+            background-color: white;
+            color: black;
+        }
+
+        a{
+            text-decoration: none;
+            color:white;
+        }
+
+        a:hover{
+            color:white;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="padding: 50px;">
+        <div style="display: flex; margin: auto; width: 600px;">
+            <div class="addMovieForm">
+                <h1>Search Movie</h1>
+                <form class="addMovie" action="/getMovie" method="get">
+                    <h4>Superhero Name</h4>
+                    <input type="text" name="superheroName" placeholder="eg. Batman, Hulk, Aquaman">
+                    <br><br>
+                    <input class="submitBtn" type="submit" value="Add to Favourite">
+                </form>
+            </div>
+
+            <div class="editMovieForm">
+                <h1>Change Rating</h1>
+                <form class="editMovie" action="/editMovie" method="get">
+                    <h4>Superhero Name:</h4>
+                    <select name="superheroName">
+                        <%moviesList.forEach(movie => {%>
+                            <option value="<%= movie.superhero %>"><%= movie.superhero %></option>
+                        <%})%>
+                    </select>
+                    <br>
+                    <h4>Rating:</h4> <input type="number" name="rating" min="0" max="10" placeholder="1 - 10">
+                    <br><br>
+                    <input class="submitBtn" type="submit" value="Update Rating">
+                </form>
+            </div>
+        </div>
+        <div class="movieList">
+            <h1>Favourite Movie List</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Superhero</th>
+                    <th scope="col">Fullname</th>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Year of Release</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%moviesList.forEach(movie => {%>
+                    <tr>
+                        <th scope="row"><%= movie._id %></th>
+                        <td><%= movie.superhero %></td>
+                        <td><%= movie.fullname %></td>
+                        <td><%= movie.movieName %></td>
+                        <td><%= movie.movieDescription %></td>
+                        <td><%= movie.movieRating %></td>
+                        <td><a href="/deleteMovie?title=<%= movie._id %>">Delete</a></td>
+                    </tr>
+                <%})%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</html>
