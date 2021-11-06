@@ -4,6 +4,7 @@ const app = express();
 const Record = require('./connect1');
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
+const port = Process.env.PORT || 5000 ;
 
 const superheroApi = '4089438887820246';
 
@@ -98,7 +99,7 @@ app.get('/deleteMovie', (req, res) =>{
     res.redirect(req.get('referer'));
 });//close deletemovie
 
-app.listen(5000, ()=>{
+app.listen(port, ()=>{
 
 console.log('Server listening to port 5000');
 
